@@ -1,16 +1,23 @@
 {
-    "name": "sample-app",
-    "version": "0.0.1",
-    "description": "Express Js App",
-    "main": "index.js",
-    "keywords": ["express-generator", "express"],
-    "scripts": {
-      "test": "npm test"
-    },
-    "author": "Mohit Yadav mohit.developer21@gmail.com&gt;",
-    "license": "ISC",
-    "dependencies": {
-      "express": "latest"
-    }
+  "name": "generator-express",
+  "version": "0.0.1",
+  "description": "Express Js App Generator",
+  "main": "generators/app/index.js",
+  "keywords": [
+    "express-generator",
+    "express"
+  ],
+  "scripts": {
+    "test": "npm test"
+  },
+  "files": [
+    "generators"
+  ],
+  "author": "Mohit Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "yeoman-generator": "^4.0.2",
+    "yosay": "^2.0.2"
   }
-  
+}
