@@ -1,28 +1,26 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "target": "es2015",
-      "noImplicitAny": false,
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "sourceMap": false,
-      "outDir": "lib",
-      "typeRoots": [
-        "node_modules/@types",
-        "index.d.ts"
-      ],
-      "strict": true,
-      "strictNullChecks": true,
-      "strictFunctionTypes": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "strictPropertyInitialization": false,
-      "lib": [
-        "esnext"
-      ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2015",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "outDir": "lib",
+    "typeRoots": ["node_modules/@types", "index.d.ts"],
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["*"],
+      "@helpers/*": ["helpers/*"]
     },
-    "include": [
-      "src/**/*"
-    ]
-  }
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "lib": ["esnext"]
+  },
+  "include": ["src/**/*"]
+}

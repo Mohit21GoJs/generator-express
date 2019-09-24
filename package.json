@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "yarn run clean && tsc",
+    "postbuild": "ef-tspm",
     "clean": "rimraf lib/",
     "prepare": "yarn run build"
   },
@@ -29,6 +30,7 @@
     "yosay": "^2.0.2"
   },
   "devDependencies": {
+    "@ef-carbon/tspm": "^2.2.5",
     "@types/chalk": "^2.2.0",
     "@types/inquirer": "^6.5.0",
     "@types/inquirer-npm-name": "^3.0.1",
@@ -37,6 +39,7 @@
     "@types/yeoman-generator": "^3.1.4",
     "@types/yosay": "^0.0.29",
     "rimraf": "^3.0.0",
+    "ts-loader": "^6.1.2",
     "typescript": "^3.6.3"
   }
 }

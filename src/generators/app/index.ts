@@ -1,4 +1,3 @@
-import { appendToObj } from "../../helpers/util";
 import Generator from "yeoman-generator";
 import yosay from "yosay";
 import chalk from "chalk";
@@ -6,6 +5,7 @@ import askName from "inquirer-npm-name";
 import inquirer from "inquirer";
 import path from "path";
 import mkdirp from "mkdirp";
+import { appendToObj } from "@helpers/util";
 
 type pkgManagerKey = "yarn" | "npm";
 
