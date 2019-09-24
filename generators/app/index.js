@@ -2,7 +2,8 @@ const Generator = require("yeoman-generator");
 const yosay = require("yosay");
 const chalk = require("chalk");
 const askName = require("inquirer-npm-name");
-const path = require('path');
+const path = require("path");
+const mkdirp = require('mkdirp');
 
 const pkgManagerMap = {
   yarn() {
@@ -27,12 +28,8 @@ module.exports = class extends Generator {
     const { name: appName } = await askName(
       {
         name: "name",
-        message: "Your app name",
-        default: path.basename(process.cwd()),
-        // filter: makeGeneratorName,
-        // validate: str => {
-        //   return str.length > "generator-".length;
-        // }
+        message: "App name",
+        default: path.basename(process.cwd())
       },
       this
     );
@@ -83,6 +80,17 @@ module.exports = class extends Generator {
         { name: "jspm", value: "jspm", disabled: true }
       ]
     });
+  }
+
+  default() {
+    const { app_name: name} = this.answers.packageAnswers;
+    if (path.basename(this.destinationPath()) !== name) {
+      this.log(
+        `Your project must be inside a folder named ${name}\nI'll automatically create this folder.`
+      );
+      mkdirp(name);
+      this.destinationRoot(this.destinationPath(name));
+    }
   }
 
   writing() {
