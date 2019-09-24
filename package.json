@@ -1,0 +1,16 @@
+{
+    "name": "sample-app",
+    "version": "0.0.1",
+    "description": "Express Js App",
+    "main": "index.js",
+    "keywords": ["express-generator", "express"],
+    "scripts": {
+      "test": "npm test"
+    },
+    "author": "Mohit Yadav mohit.developer21@gmail.com&gt;",
+    "license": "ISC",
+    "dependencies": {
+      "express": "latest"
+    }
+  }
+  
