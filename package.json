@@ -13,7 +13,7 @@
     "prepare": "yarn run build"
   },
   "files": [
-    "lib/generators"
+    "lib/"
   ],
   "author": "Mohit Yadav",
   "license": "ISC",
