@@ -10,7 +10,9 @@ import mkdirp from "mkdirp";
 type pkgManagerKey = "yarn" | "npm";
 
 export default class extends Generator {
-  answers: { name?: string; packageManager?: pkgManagerKey } = {};
+  answers: { name?: string; packageManager?: pkgManagerKey } = {
+    name: ""
+  };
 
   initializing() {
     this.log(yosay(chalk.green(`Let's Scaffold Awesome Express App`)));
