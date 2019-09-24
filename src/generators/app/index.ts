@@ -1,4 +1,5 @@
-const Generator = require("yeoman-generator");
+import { appendToObj } from "../../helpers/util";
+import Generator from "yeoman-generator";
 const yosay = require("yosay");
 const chalk = require("chalk");
 const askName = require("inquirer-npm-name");
@@ -6,22 +7,12 @@ const path = require("path");
 const mkdirp = require("mkdirp");
 const _ = require("lodash");
 
-const pkgManagerMap = {
-  yarn() {
-    this.yarnInstall();
-  },
-  npm() {
-    this.npmInstall();
-  }
-};
+type pkgManagerKey = "yarn" | "npm";
 
-const appendToObj = (obj, val) => ({
-  ...obj,
-  ...val
-});
 module.exports = class extends Generator {
+  answers: { name?: string; packageManager?: pkgManagerKey } = {};
+
   initializing() {
-    this.answers = {};
     this.log(yosay(chalk.green(`Let's Scaffold Awesome Express App`)));
   }
 
@@ -53,7 +44,7 @@ module.exports = class extends Generator {
   }
 
   default() {
-    const { name } = this.answers;
+    const { name: name = "" } = this.answers;
     if (path.basename(this.destinationPath()) !== name) {
       this.log(
         `Your project must be inside a folder named ${name}\nI'll automatically create this folder.`
@@ -72,8 +63,20 @@ module.exports = class extends Generator {
     });
   }
 
+  __installByPkgManger(pkgKey: pkgManagerKey) {
+    const pkgManagerMap: { [key in pkgManagerKey]: () => void } = {
+      yarn: () => {
+        this.yarnInstall && this.yarnInstall();
+      },
+      npm: () => {
+        this.npmInstall && this.npmInstall();
+      }
+    };
+    return pkgManagerMap[pkgKey];
+  }
+
   install() {
-    const pkgManager = this.answers.packageManager;
-    pkgManagerMap[pkgManager] && pkgManagerMap[pkgManager].call(this);
+    const pkgManager = this.answers.packageManager as pkgManagerKey;
+    this.__installByPkgManger[pkgManager];
   }
 };
