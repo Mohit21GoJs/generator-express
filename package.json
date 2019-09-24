@@ -1,5 +1,5 @@
 {
-  "name": "generator-express",
+  "name": "generator-express-custom-boilerplate",
   "version": "0.0.1",
   "description": "Express Js App Generator",
   "main": "generators/app/index.js",
