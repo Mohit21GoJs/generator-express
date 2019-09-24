@@ -74,11 +74,11 @@ export default class extends Generator {
         this.npmInstall && this.npmInstall();
       }
     };
-    return pkgManagerMap[pkgKey];
+    return pkgManagerMap[pkgKey]();
   }
 
   install() {
     const pkgManager = this.answers.packageManager as pkgManagerKey;
-    this.__installByPkgManger[pkgManager];
+    this.__installByPkgManger(pkgManager);
   }
 }
