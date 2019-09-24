@@ -1,15 +1,15 @@
 import { appendToObj } from "../../helpers/util";
 import Generator from "yeoman-generator";
-const yosay = require("yosay");
-const chalk = require("chalk");
-const askName = require("inquirer-npm-name");
-const path = require("path");
-const mkdirp = require("mkdirp");
-const _ = require("lodash");
+import yosay from "yosay";
+import chalk from "chalk";
+import askName from "inquirer-npm-name";
+import inquirer from "inquirer";
+import path from "path";
+import mkdirp from "mkdirp";
 
 type pkgManagerKey = "yarn" | "npm";
 
-module.exports = class extends Generator {
+export default class extends Generator {
   answers: { name?: string; packageManager?: pkgManagerKey } = {};
 
   initializing() {
@@ -25,7 +25,7 @@ module.exports = class extends Generator {
           message: "App name",
           default: path.basename(process.cwd())
         },
-        this
+        inquirer
       )
     );
     this.answers = appendToObj(
@@ -49,7 +49,7 @@ module.exports = class extends Generator {
       this.log(
         `Your project must be inside a folder named ${name}\nI'll automatically create this folder.`
       );
-      mkdirp(name);
+      mkdirp(name, () => {});
       this.destinationRoot(this.destinationPath(name));
     }
 
@@ -79,4 +79,4 @@ module.exports = class extends Generator {
     const pkgManager = this.answers.packageManager as pkgManagerKey;
     this.__installByPkgManger[pkgManager];
   }
-};
+}
