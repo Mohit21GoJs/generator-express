@@ -16,7 +16,7 @@
 
 :label: Answer the questions in prompt or pass options from cli.
 
-* For help in checking available options use command `yo generator-express-custom-boilerplate --help`
+:label: For help in checking available options use command `yo generator-express-custom-boilerplate --help`
 
 ## Running the project locally
 
@@ -35,5 +35,37 @@
 :label: Run `npm link` from root directory of project(This will link the generator to yeoman).
 
 :label: Switch to any other folder and run `yo generator-express-custom-boilerplate`
+
+
+## Feature List
+
+- [x] Generate Folder.
+- [x] Generate Package.json.
+- [x] Install yarn and babel packages(either one).
+- [x] Generate Babel config.
+- [x] Generate Editorconfig.
+- [x] Generate Eslintconfig.
+
+## TODOS
+- [ ] Docker setup.
+- [ ] Options to setup one or more tools
+- [ ] Project structure generation.
+- [ ] Unit test setup.
+- [ ] Optional database setup.
+- [ ] express module generation.
+- [ ] flow config.
+- [ ] setup declarative validations using Joi.
+- [ ] Add envs and configs.
+- [ ] Add travisci and jenkins.
+- [ ] Coveralls integrations.
+- [ ] Add Badges.
+- [ ] Auto generate README.
+- [ ] Setup absolute path generation.
+- [ ] Babel plugin configs as per latest es standard.
+- [ ] Setup wrapper logger and base error handler.
+- [ ] Setup express app loaders and integration test.
+- [ ] Setup swagger.
+- [ ] Express middlewares and global error handling.
+- [ ] Error handling framework, logging framework based on bunyan.
 
 
