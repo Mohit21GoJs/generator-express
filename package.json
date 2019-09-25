@@ -1,6 +1,6 @@
 {
   "name": "generator-express-custom-boilerplate",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Express Js App Generator",
   "main": "lib/generators/app/index.js",
   "keywords": [
