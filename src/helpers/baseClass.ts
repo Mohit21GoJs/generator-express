@@ -8,4 +8,8 @@ export class BaseGeneratorClass extends Generator {
   _readPkg() {
     return this.fs.readJSON(this.destinationPath("package.json"), {});
   }
+
+  _writePkg(pkg) {
+    this.fs.writeJSON(this.destinationPath("package.json"), pkg);
+  }
 }

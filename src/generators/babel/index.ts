@@ -26,9 +26,6 @@ export = class extends BaseGeneratorClass {
       "@babel/preset-env": "^7.0.0"
     });
 
-    this.fs.writeJSON(
-      this.destinationPath("package.json"),
-      pkg
-    );
+    this._writePkg(pkg);
   }
 }
