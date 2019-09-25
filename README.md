@@ -1,4 +1,4 @@
-# generator-express
+# :tada: generator-express :zap:
 
 ## For using the generator
 
