@@ -1,4 +1,4 @@
-import Generator from "yeoman-generator";
+import { BaseGeneratorClass } from '@helpers/baseClass';
 import yosay from "yosay";
 import chalk from "chalk";
 import askName from "inquirer-npm-name";
@@ -9,7 +9,7 @@ import { appendToObj } from "@helpers/util";
 
 type pkgManagerKey = "yarn" | "npm";
 
-export default class extends Generator {
+export default class extends BaseGeneratorClass {
   answers: { name?: string; packageManager?: pkgManagerKey } = {
     name: ""
   };
@@ -60,9 +60,13 @@ export default class extends Generator {
       name,
       projectRoot: "generators",
       skipInstall: true,
-      travis: true,
-      coveralls: true
+      travis: false,
+      coveralls: false,
+      editorconfig: false,
+      license: false
     });
+
+    this.composeWith(require.resolve("../babel"), {});
   }
 
   __installByPkgManger(pkgKey: pkgManagerKey) {

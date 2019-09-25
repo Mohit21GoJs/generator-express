@@ -9,9 +9,10 @@
   ],
   "scripts": {
     "build": "yarn run clean && tsc",
-    "postbuild": "ef-tspm",
+    "postbuild": "ef-tspm && yarn run copy-files",
     "clean": "rimraf lib/",
-    "prepare": "yarn run build"
+    "prepare": "yarn run build",
+    "copy-files": "copyfiles -u 1 src/**/*.js lib"
   },
   "files": [
     "lib/"
@@ -38,6 +39,7 @@
     "@types/mkdirp": "^0.5.2",
     "@types/yeoman-generator": "^3.1.4",
     "@types/yosay": "^0.0.29",
+    "copyfiles": "^2.1.1",
     "rimraf": "^3.0.0",
     "ts-loader": "^6.1.2",
     "typescript": "^3.6.3"
