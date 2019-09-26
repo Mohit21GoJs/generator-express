@@ -12,9 +12,6 @@ export = class extends BaseGeneratorClass {
   props: Props = {
     [KEY_MAPS.EDITORS]: []
   };
-  constructor(args, opts) {
-    super(args, opts);
-  }
 
   initializing() {
     this.fs.copy(
@@ -56,12 +53,16 @@ export = class extends BaseGeneratorClass {
       "@babel/cli": "^7.0.0",
       "@babel/preset-env": "^7.0.0",
       "@babel/node": "^7.0.0",
-      "babel-plugin-module-resolver": "^3.2.0"
+      "babel-plugin-module-resolver": "^3.2.0",
+      "nodemon": "latest",
     });
 
     pkg.scripts = appendToObj(pkg.scripts, {
       "babel:start": `babel-node ${pkg.main}`,
-      "babel:test": "babel-node babel/index.js"
+      "start": "nodemon --exec yarn run babel:start",
+      "babel:test": "babel-node babel/index.js",
+      "build": "babel src -d lib",
+      "babel:build-test": "babel babel -d lib"
     });
 
     this._writePkg(pkg);
