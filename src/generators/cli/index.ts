@@ -40,27 +40,19 @@ export = class extends BaseGeneratorClass {
     );
   }
 
-  async prompting() {
-    this.props = await this.prompt({
-      type: "checkbox",
-      name: KEY_MAPS.EDITORS,
-      message: "Which Editor do you use?",
-      choices: [
-        { name: "Visual Studio Code", value: "vscode" },
-        { name: "Atom", value: "atom" },
-        { name: "Webstorm", value: "webstorm" }
-      ]
-    });
-  }
-
   writing() {
     const pkg = this._readPkg();
-
     pkg.devDependencies = appendToObj(pkg.devDependencies, {
       eslint: "latest",
       prettier: "latest",
+      "eslint-config-airbnb": "latest",
+      "babel-eslint": "latest",
       "eslint-config-prettier": "latest",
       "eslint-plugin-prettier": "latest",
+      "eslint-plugin-flowtype": "latest",
+      "eslint-plugin-jest": "latest",
+      "eslint-plugin-import": "latest",
+      "eslint-import-resolver-babel-module": "latest",
       husky: "latest",
       "lint-staged": "latest"
     });

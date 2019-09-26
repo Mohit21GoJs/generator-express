@@ -3,12 +3,11 @@ module.exports = {
   extends: [
     "plugin:flowtype/recommended",
     "plugin:jest/recommended",
-    "plugin:react/recommended",
     "eslint-config-airbnb",
     "prettier",
     "prettier/flowtype"
   ],
-  plugins: ["jest", "flowtype", "prettier", "compat", "import"],
+  plugins: ["jest", "flowtype", "prettier", "import"],
   env: {
     es6: true,
     node: true,
@@ -23,6 +22,9 @@ module.exports = {
     polyfills: ["promises"],
     flowtype: {
       onlyFilesWithFlowAnnotation: false
+    },
+    "import/resolver": {
+      "babel-module": {}
     }
   }
 };
