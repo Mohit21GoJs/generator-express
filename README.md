@@ -67,5 +67,7 @@
 - [ ] Setup swagger.
 - [ ] Express middlewares and global error handling.
 - [ ] Error handling framework, logging framework based on bunyan.
+- [ ] Webpack, Parcel.
+- [ ] Svgr and other handy cli's
 
 
