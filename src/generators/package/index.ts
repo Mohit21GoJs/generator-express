@@ -12,11 +12,21 @@ interface PackageAnswers {
   author?: Author;
   license?: string;
   keywords?: Array<string>;
-  indexFile?: string;
+  main?: string;
   description?: string;
 }
 export = class extends BaseGeneratorClass {
   answers: PackageAnswers = {};
+
+  constructor(args, options) {
+    super(args, options);
+
+    this.option("name", {
+      type: String,
+      default: "",
+      description: "Some desc"
+    });
+  }
 
   async __askFor(): Promise<{}> {
     const {
@@ -85,23 +95,23 @@ export = class extends BaseGeneratorClass {
   async prompting() {
     const promptAnswers = await this.__askFor();
     const mappedAnswers = {
+      name: this.options.name,
       version: get(promptAnswers, "version"),
       author: {
         email: get(promptAnswers, "email"),
-        name: get(promptAnswers, "author")
+        name: get(promptAnswers, "name")
       },
       license: get(promptAnswers, "license"),
       keywords: [],
-      indexFile: get(promptAnswers, "indexFile"),
+      main: get(promptAnswers, "indexFile"),
       description: get(promptAnswers, "description")
     };
     this.answers = appendToObj(this.answers, mappedAnswers);
-    console.log("answers is", this.answers);
   }
 
   writing() {
-    const pkg = this._readPkg();
-    // update package json and write it
+    let pkg = this._readPkg();
+    pkg = appendToObj(pkg, this.answers);
     this._writePkg(pkg);
   }
 };

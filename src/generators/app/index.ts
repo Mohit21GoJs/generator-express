@@ -54,7 +54,9 @@ export default class extends BaseGeneratorClass {
       mkdirp(name, () => {});
       this.destinationRoot(this.destinationPath(name));
     }
-    this.composeWith(require.resolve("../package"), {});
+    this.composeWith(require.resolve("../package"), {
+      name
+    });
     this.composeWith(require.resolve("../babel"), {});
   }
 
