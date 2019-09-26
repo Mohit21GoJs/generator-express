@@ -12,7 +12,7 @@
     "postbuild": "ef-tspm && yarn run copy-files",
     "clean": "rimraf lib/",
     "prepare": "yarn run build",
-    "copy-files": "copyfiles -u 1 src/**/*.js lib"
+    "copy-files": "copyfiles -u 1 src/**/*.js src/**/*.json lib"
   },
   "files": [
     "lib/"
@@ -22,6 +22,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "deep-extend": "^0.6.0",
+    "generator-license": "^5.4.0",
     "generator-node": "^2.7.0",
     "inquirer": "^7.0.0",
     "inquirer-npm-name": "^3.0.0",

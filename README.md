@@ -42,11 +42,14 @@
 - [x] Generate Folder.
 - [x] Generate Package.json.
 - [x] Install yarn and babel packages(either one).
-- [x] Generate Babel config.
-- [x] Generate Editorconfig.
-- [x] Generate Eslintconfig.
+- [x] Generate Babel config(Babel 7).
+- [x] Add babel absolute path resolution module.
 
 ## TODOS
+
+- [ ] Nodemon
+- [ ] Eslint
+- [ ] Editorconfig
 - [ ] Docker setup.
 - [ ] Options to setup one or more tools
 - [ ] Project structure generation.
@@ -67,5 +70,7 @@
 - [ ] Setup swagger.
 - [ ] Express middlewares and global error handling.
 - [ ] Error handling framework, logging framework based on bunyan.
+- [ ] Webpack, Parcel.
+- [ ] Svgr and other handy cli's
 
 
