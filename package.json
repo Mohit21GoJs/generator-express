@@ -35,6 +35,7 @@
   "devDependencies": {
     "@ef-carbon/tspm": "^2.2.5",
     "@types/chalk": "^2.2.0",
+    "@types/deep-extend": "^0.4.31",
     "@types/inquirer": "^6.5.0",
     "@types/inquirer-npm-name": "^3.0.1",
     "@types/lodash": "^4.14.139",
