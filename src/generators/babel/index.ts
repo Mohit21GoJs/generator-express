@@ -43,7 +43,6 @@ export = class extends BaseGeneratorClass {
       );
     }
     const pkg = this._readPkg();
-
     pkg.dependencies = appendToObj(pkg.dependencies, {
       "@babel/polyfill": "^7.0.0"
     });

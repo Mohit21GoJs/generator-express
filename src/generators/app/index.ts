@@ -58,6 +58,7 @@ export default class extends BaseGeneratorClass {
       name
     });
     this.composeWith(require.resolve("../babel"), {});
+    this.composeWith(require.resolve("../git"), {});
   }
 
   __installByPkgManger(pkgKey: pkgManagerKey) {
