@@ -54,18 +54,7 @@ export default class extends BaseGeneratorClass {
       mkdirp(name, () => {});
       this.destinationRoot(this.destinationPath(name));
     }
-
-    this.composeWith(require.resolve("generator-node/generators/app"), {
-      boilerplate: false,
-      name,
-      projectRoot: "generators",
-      skipInstall: true,
-      travis: false,
-      coveralls: false,
-      editorconfig: false,
-      license: false
-    });
-
+    this.composeWith(require.resolve("../package"), {});
     this.composeWith(require.resolve("../babel"), {});
   }
 
