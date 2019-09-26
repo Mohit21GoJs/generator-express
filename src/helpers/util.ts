@@ -1,10 +1,9 @@
+import ext from "deep-extend";
+
 export const appendToObj = (
   obj: Record<any, any>,
   val: Record<any, any>
-): Record<any, any> => ({
-  ...obj,
-  ...val
-});
+): Record<any, any> => ext(obj, val);
 
 interface ThisArg extends ThisType<{}> {
   log: (val: any) => void;

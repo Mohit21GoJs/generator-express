@@ -12,7 +12,7 @@
     "postbuild": "ef-tspm && yarn run copy-files",
     "clean": "rimraf lib/",
     "prepare": "yarn run build",
-    "copy-files": "copyfiles -u 1 src/**/*.js lib"
+    "copy-files": "copyfiles -u 1 src/**/*.js src/**/*.json lib"
   },
   "files": [
     "lib/"

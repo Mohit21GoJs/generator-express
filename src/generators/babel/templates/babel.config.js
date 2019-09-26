@@ -13,4 +13,18 @@ const presets = [
   ]
 ];
 
-module.exports = { presets };
+const plugins = [
+  [
+    "module-resolver",
+    {
+      root: ["."],
+      alias: {
+        "*": "./src",
+        "@test": "./test",
+        "@babel": "./babel"
+      }
+    }
+  ]
+];
+
+module.exports = { presets, plugins };
