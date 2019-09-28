@@ -72,5 +72,9 @@
 - [ ] Error handling framework, logging framework based on bunyan.
 - [ ] Webpack, Parcel.
 - [ ] Svgr and other handy cli's
+- [ ] pm2 and cluster module for prod
+- [ ] generic error handling and service bus
+- [ ] Circuit breaker setup
+
 
 
