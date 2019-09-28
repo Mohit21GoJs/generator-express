@@ -44,11 +44,11 @@
 - [x] Install yarn and babel packages(either one).
 - [x] Generate Babel config(Babel 7).
 - [x] Add babel absolute path resolution module.
+- [x] Nodemon
+- [x] Eslint
 
 ## TODOS
 
-- [ ] Nodemon
-- [ ] Eslint
 - [ ] Editorconfig
 - [ ] Docker setup.
 - [ ] Options to setup one or more tools
