@@ -1,5 +1,6 @@
-import { BaseGeneratorClass } from '@helpers/baseClass';
+import { BaseGeneratorClass } from "@helpers/baseClass";
 import yosay from "yosay";
+import * as shelljs from "shelljs";
 import chalk from "chalk";
 import askName from "inquirer-npm-name";
 import inquirer from "inquirer";
@@ -59,15 +60,22 @@ export default class extends BaseGeneratorClass {
     });
     this.composeWith(require.resolve("../babel"), {});
     this.composeWith(require.resolve("../git"), {});
+    this.composeWith(require.resolve("../cli"), {});
   }
 
   __installByPkgManger(pkgKey: pkgManagerKey) {
     const pkgManagerMap: { [key in pkgManagerKey]: () => void } = {
       yarn: () => {
         this.yarnInstall && this.yarnInstall();
+        shelljs.exec(`export PKG=eslint-config-airbnb &&
+          npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add -D "$PKG@latest"
+    `);
       },
       npm: () => {
         this.npmInstall && this.npmInstall();
+        shelljs.exec(`export PKG=eslint-config-airbnb &&
+          npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
+    `);
       }
     };
     return pkgManagerMap[pkgKey]();

@@ -28,6 +28,7 @@
     "inquirer-npm-name": "^3.0.0",
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
+    "shelljs": "^0.8.3",
     "simple-git": "^1.126.0",
     "yeoman-generator": "^4.0.2",
     "yosay": "^2.0.2"
@@ -35,10 +36,12 @@
   "devDependencies": {
     "@ef-carbon/tspm": "^2.2.5",
     "@types/chalk": "^2.2.0",
+    "@types/deep-extend": "^0.4.31",
     "@types/inquirer": "^6.5.0",
     "@types/inquirer-npm-name": "^3.0.1",
     "@types/lodash": "^4.14.139",
     "@types/mkdirp": "^0.5.2",
+    "@types/shelljs": "^0.8.5",
     "@types/yeoman-generator": "^3.1.4",
     "@types/yosay": "^0.0.29",
     "copyfiles": "^2.1.1",
