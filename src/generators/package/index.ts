@@ -1,6 +1,7 @@
 import { BaseGeneratorClass } from '@helpers/baseClass';
 import get from 'lodash/get';
 import { appendToObj, mappedSequentialPromise } from '@app/helpers/util';
+import { X_OK } from 'constants';
 
 interface Author {
     email?: string;
@@ -35,7 +36,6 @@ export = class extends BaseGeneratorClass {
                 git: { email, name },
             },
         } = this;
-
         return mappedSequentialPromise({
             reducer: (acc, val) => ({ ...acc, ...val.value }),
             promises: [
