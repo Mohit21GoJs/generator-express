@@ -29,7 +29,7 @@ export = class extends BaseGeneratorClass {
             },
         } = this;
 
-        return mappedSequentialPromise({
+        return mappedSequentialPromise<ReturnType<typeof prompt>>({
             promises: [
                 {
                     value: prompt,
