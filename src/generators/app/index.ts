@@ -1,87 +1,85 @@
-import { BaseGeneratorClass } from "@helpers/baseClass";
-import yosay from "yosay";
-import * as shelljs from "shelljs";
-import chalk from "chalk";
-import askName from "inquirer-npm-name";
-import inquirer from "inquirer";
-import path from "path";
-import mkdirp from "mkdirp";
-import { appendToObj } from "@helpers/util";
+import { BaseGeneratorClass } from '@helpers/baseClass';
+import yosay from 'yosay';
+import * as shelljs from 'shelljs';
+import chalk from 'chalk';
+import askName from 'inquirer-npm-name';
+import inquirer from 'inquirer';
+import path from 'path';
+import mkdirp from 'mkdirp';
+import { appendToObj } from '@helpers/util';
 
-type pkgManagerKey = "yarn" | "npm";
+type pkgManagerKey = 'yarn' | 'npm';
 export default class extends BaseGeneratorClass {
-  answers: { name?: string; packageManager?: pkgManagerKey } = {
-    name: ""
-  };
+    answers: { name?: string; packageManager?: pkgManagerKey } = {
+        name: '',
+    };
 
-  initializing() {
-    this.log(yosay(chalk.green(`Let's Scaffold Awesome Express App`)));
-  }
-
-  async prompting() {
-    this.answers = appendToObj(
-      this.answers,
-      await askName(
-        {
-          name: "name",
-          message: "App name",
-          default: path.basename(process.cwd())
-        },
-        inquirer
-      )
-    );
-    this.answers = appendToObj(
-      this.answers,
-      await this.prompt({
-        type: "list",
-        name: "packageManager",
-        message: "Select a package manager",
-        choices: [
-          { name: "npm", value: "npm" },
-          { name: "yarn", value: "yarn", checked: true },
-          { name: "jspm", value: "jspm", disabled: true }
-        ]
-      })
-    );
-  }
-
-  default() {
-    const { name: name = "" } = this.answers;
-    if (path.basename(this.destinationPath()) !== name) {
-      this.log(
-        `Your project must be inside a folder named ${name}\nI'll automatically create this folder.`
-      );
-      mkdirp(name, () => {});
-      this.destinationRoot(this.destinationPath(name));
+    initializing(): void {
+        this.log(yosay(chalk.green(`Let's Scaffold Awesome Express App`)));
     }
-    this.composeWith(require.resolve("../package"), {
-      name
-    });
-    this.composeWith(require.resolve("../babel"), {});
-    this.composeWith(require.resolve("../git"), {});
-    this.composeWith(require.resolve("../cli"), {});
-  }
 
-  __installByPkgManger(pkgKey: pkgManagerKey) {
-    const pkgManagerMap: { [key in pkgManagerKey]: () => void } = {
-      yarn: () => {
-        this.yarnInstall && this.yarnInstall();
-        shelljs.exec(`export PKG=eslint-config-airbnb &&
+    async prompting(): Promise<void> {
+        this.answers = appendToObj(
+            this.answers,
+            await askName(
+                {
+                    name: 'name',
+                    message: 'App name',
+                    default: path.basename(process.cwd()),
+                },
+                inquirer,
+            ),
+        );
+        this.answers = appendToObj(
+            this.answers,
+            await this.prompt({
+                type: 'list',
+                name: 'packageManager',
+                message: 'Select a package manager',
+                choices: [
+                    { name: 'npm', value: 'npm' },
+                    { name: 'yarn', value: 'yarn', checked: true },
+                    { name: 'jspm', value: 'jspm', disabled: true },
+                ],
+            }),
+        );
+    }
+
+    default(): void {
+        const { name: name = '' } = this.answers;
+        if (path.basename(this.destinationPath()) !== name) {
+            this.log(`Your project must be inside a folder named ${name}\nI'll automatically create this folder.`);
+            mkdirp(name, () => {});
+            this.destinationRoot(this.destinationPath(name));
+        }
+        this.composeWith(require.resolve('../package'), {
+            name,
+        });
+        this.composeWith(require.resolve('../babel'), {});
+        this.composeWith(require.resolve('../git'), {});
+        this.composeWith(require.resolve('../cli'), {});
+    }
+
+    __installByPkgManger(pkgKey: pkgManagerKey): void {
+        const pkgManagerMap: { [key in pkgManagerKey]: () => void } = {
+            yarn: () => {
+                this.yarnInstall && this.yarnInstall();
+                shelljs.exec(`export PKG=eslint-config-airbnb &&
           npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add -D "$PKG@latest"
     `);
-      },
-      npm: () => {
-        this.npmInstall && this.npmInstall();
-        shelljs.exec(`export PKG=eslint-config-airbnb &&
+            },
+            npm: () => {
+                this.npmInstall && this.npmInstall();
+                shelljs.exec(`export PKG=eslint-config-airbnb &&
           npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
     `);
-      }
-    };
-    return pkgManagerMap[pkgKey]();
-  }
+            },
+        };
+        return pkgManagerMap[pkgKey]();
+    }
 
-  install() {
-    const pkgManager = this.answers.packageManager as pkgManagerKey;
-    this.__installByPkgManger(pkgManager);
-  }
+    install(): void {
+        const pkgManager = this.answers.packageManager as pkgManagerKey;
+        this.__installByPkgManger(pkgManager);
+    }
 }
