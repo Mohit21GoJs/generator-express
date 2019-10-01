@@ -1,117 +1,116 @@
-import { BaseGeneratorClass } from "@helpers/baseClass";
-import get from "lodash/get";
-import { appendToObj, mappedSequentialPromise } from "@app/helpers/util";
+import { BaseGeneratorClass } from '@helpers/baseClass';
+import get from 'lodash/get';
+import { appendToObj, mappedSequentialPromise } from '@app/helpers/util';
 
 interface Author {
-  email?: string;
-  username?: string;
-  name?: string;
+    email?: string;
+    username?: string;
+    name?: string;
 }
 interface PackageAnswers {
-  version?: string;
-  author?: Author;
-  license?: string;
-  keywords?: Array<string>;
-  main?: string;
-  description?: string;
+    version?: string;
+    author?: Author;
+    license?: string;
+    keywords?: Array<string>;
+    main?: string;
+    description?: string;
 }
 export = class extends BaseGeneratorClass {
-  answers: PackageAnswers = {};
+    answers: PackageAnswers = {};
 
-  constructor(args, options) {
-    super(args, options);
+    constructor(args, options) {
+        super(args, options);
 
-    this.option("name", {
-      type: String,
-      default: "",
-      description: "Some desc"
-    });
-  }
+        this.option('name', {
+            type: String,
+            default: '',
+            description: 'Some desc',
+        });
+    }
 
-  async __askFor(): Promise<{}> {
-    const {
-      prompt,
-      user: {
-        git: { email, name }
-      }
-    } = this;
+    async __askFor<T>(): Promise<T> {
+        const {
+            prompt,
+            user: {
+                git: { email, name },
+            },
+        } = this;
+        return mappedSequentialPromise<ReturnType<typeof prompt>>({
+            reducer: (acc, val) => ({ ...acc, ...val.value }),
+            promises: [
+                {
+                    value: prompt,
+                    thisArg: this,
+                    args: {
+                        type: 'input',
+                        name: 'version',
+                        message: 'Package Version',
+                        default: '0.0.1',
+                    },
+                },
+                {
+                    value: prompt,
+                    thisArg: this,
+                    args: {
+                        type: 'input',
+                        name: 'name',
+                        message: 'Author Name',
+                        default: name,
+                    },
+                },
+                {
+                    value: prompt,
+                    thisArg: this,
+                    args: {
+                        type: 'input',
+                        name: 'email',
+                        message: 'Author Email',
+                        default: email,
+                    },
+                },
+                {
+                    value: prompt,
+                    thisArg: this,
+                    args: {
+                        type: 'input',
+                        name: 'description',
+                        message: 'Module Description',
+                        default: 'Some description',
+                    },
+                },
+                {
+                    value: prompt,
+                    thisArg: this,
+                    args: {
+                        type: 'input',
+                        name: 'indexFile',
+                        message: 'Index File path',
+                        default: 'index.js',
+                    },
+                },
+            ],
+        });
+    }
+    async prompting(): Promise<void> {
+        const promptAnswers = await this.__askFor<PackageAnswers>();
+        const mappedAnswers = {
+            name: this.options.name,
+            version: get(promptAnswers, 'version'),
+            author: {
+                email: get(promptAnswers, 'email'),
+                name: get(promptAnswers, 'name'),
+            },
+            license: get(promptAnswers, 'license'),
+            keywords: [],
+            main: get(promptAnswers, 'indexFile'),
+            description: get(promptAnswers, 'description'),
+        };
+        this.answers = appendToObj(this.answers, mappedAnswers);
+    }
 
-    return mappedSequentialPromise({
-      reducer: (acc, val) => ({ ...acc, ...val.value }),
-      promises: [
-        {
-          value: prompt,
-          thisArg: this,
-          args: {
-            type: "input",
-            name: "version",
-            message: "Package Version",
-            default: "0.0.1"
-          }
-        },
-        {
-          value: prompt,
-          thisArg: this,
-          args: {
-            type: "input",
-            name: "name",
-            message: "Author Name",
-            default: name
-          }
-        },
-        {
-          value: prompt,
-          thisArg: this,
-          args: {
-            type: "input",
-            name: "email",
-            message: "Author Email",
-            default: email
-          }
-        },
-        {
-          value: prompt,
-          thisArg: this,
-          args: {
-            type: "input",
-            name: "description",
-            message: "Module Description",
-            default: "Some description"
-          }
-        },
-        {
-          value: prompt,
-          thisArg: this,
-          args: {
-            type: "input",
-            name: "indexFile",
-            message: "Index File path",
-            default: "index.js"
-          }
-        }
-      ]
-    });
-  }
-  async prompting() {
-    const promptAnswers = await this.__askFor();
-    const mappedAnswers = {
-      name: this.options.name,
-      version: get(promptAnswers, "version"),
-      author: {
-        email: get(promptAnswers, "email"),
-        name: get(promptAnswers, "name")
-      },
-      license: get(promptAnswers, "license"),
-      keywords: [],
-      main: get(promptAnswers, "indexFile"),
-      description: get(promptAnswers, "description")
-    };
-    this.answers = appendToObj(this.answers, mappedAnswers);
-  }
-
-  writing() {
-    let pkg = this._readPkg();
-    pkg = appendToObj(pkg, this.answers);
-    this._writePkg(pkg);
-  }
+    writing(): void {
+        let pkg = this._readPkg();
+        pkg = appendToObj(pkg, this.answers);
+        this._writePkg(pkg);
+    }
 };
