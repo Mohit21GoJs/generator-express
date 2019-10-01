@@ -12,7 +12,12 @@
     "postbuild": "ef-tspm && yarn run copy-files",
     "clean": "rimraf lib/",
     "prepare": "yarn run build",
-    "copy-files": "copyfiles -u 1 src/**/*.js src/**/*.json src/**/*.tmp lib"
+    "copy-files": "copyfiles -u 1 src/**/*.js src/**/*.json src/**/*.tmp lib",
+    "lint": "eslint src",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "husky": {
+    "pre-commit": "yarn run lint:fix"
   },
   "files": [
     "lib/"
@@ -44,8 +49,16 @@
     "@types/shelljs": "^0.8.5",
     "@types/yeoman-generator": "^3.1.4",
     "@types/yosay": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
     "copyfiles": "^2.1.1",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.7",
+    "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
+    "semantic-release": "^15.13.24",
     "ts-loader": "^6.1.2",
     "typescript": "^3.6.3"
   }

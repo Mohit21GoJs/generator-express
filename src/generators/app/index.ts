@@ -9,7 +9,6 @@ import mkdirp from "mkdirp";
 import { appendToObj } from "@helpers/util";
 
 type pkgManagerKey = "yarn" | "npm";
-
 export default class extends BaseGeneratorClass {
   answers: { name?: string; packageManager?: pkgManagerKey } = {
     name: ""
