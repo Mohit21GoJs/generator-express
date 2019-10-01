@@ -1,1 +1,1 @@
-export default () => 'Hello Babel'
+export default () => 'Hello Babel';
