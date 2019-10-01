@@ -1,6 +1,6 @@
 import ext from 'deep-extend';
 
-interface ThisArgs<W> extends ThisType<{}>{
+interface ThisArgs<W> extends ThisType<{}> {
     log: (val?: string) => W;
 }
 
@@ -15,13 +15,13 @@ interface PromiseMap<T, U extends {}, W> {
     defaultVal?: W;
 }
 
-type Reducer<T,U> = (acc: T, value: U) => T;
+type Reducer<T, U> = (acc: T, value: U) => T;
 
 interface MappedPromiseFunc<T extends {}, U, Answers> {
     promises: Array<PromiseMap<{}, Answers, string>>;
-    reducer?: Reducer<T,U>
+    reducer?: Reducer<T, U>;
 }
-const defaultReducer = (acc, { value, key }) => {
+const defaultReducer = (acc, { value, key }): typeof Array.prototype.reduce => {
     return {
         ...acc,
         [key]: value,
@@ -30,8 +30,8 @@ const defaultReducer = (acc, { value, key }) => {
 // Non failure promise all with mapped results
 export const mappedPromiseAll = async <Answers>({
     promises,
-    reducer = defaultReducer
-}: MappedPromiseFunc<{}, { key: string; value: {} }, Answers>) => {
+    reducer = defaultReducer,
+}: MappedPromiseFunc<{}, { key: string; value: {} }, Answers>): Promise<{ key?: string; value?: {} }> => {
     const dataVals = await Promise.all(
         promises.map(async ({ key, thisArg, args, defaultVal = {}, value }) => {
             let data = defaultVal;
@@ -44,7 +44,7 @@ export const mappedPromiseAll = async <Answers>({
         }),
     );
 
-    return dataVals.reduce(reducer, {});
+    return Promise.resolve(dataVals.reduce(reducer, {}));
 };
 
 const concat = baseArr => obj => ({ ...baseArr, ...obj });
@@ -58,6 +58,8 @@ const promiseReduce = async (acc, x) => {
 };
 
 const serial = funcs => funcs.reduce(promiseReduce, Promise.resolve([]));
-export const mappedSequentialPromise = async <Answers>({ promises }: MappedPromiseFunc<{}, {}, Answers>) => {
+export const mappedSequentialPromise = async <Answers>({
+    promises,
+}: MappedPromiseFunc<{}, { key: string; value: {} }, Answers>) => {
     return await serial(promises);
 };
