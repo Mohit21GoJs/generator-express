@@ -1,67 +1,72 @@
 {
-    "name": "generator-express-custom-boilerplate",
-    "version": "0.0.7",
-    "description": "Express Js App Generator",
-    "main": "lib/generators/app/index.js",
-    "keywords": [
-        "express-generator",
-        "express"
-    ],
-    "scripts": {
-        "build": "yarn run clean && tsc",
-        "postbuild": "ef-tspm && yarn run copy-files",
-        "clean": "rimraf lib/",
-        "prepare": "yarn run build",
-        "copy-files": "copyfiles -u 1 src/**/*.js src/**/*.json src/**/*.tmp lib",
-        "lint": "eslint src --ext .ts,.tsx --max-warnings=5",
-        "lint:fix": "yarn run lint --fix"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "yarn run lint:fix"
-        }
-    },
-    "files": [
-        "lib/"
-    ],
-    "author": "Mohit Yadav",
-    "license": "ISC",
-    "dependencies": {
-        "chalk": "^2.4.2",
-        "deep-extend": "^0.6.0",
-        "generator-license": "^5.4.0",
-        "generator-node": "^2.7.0",
-        "inquirer": "^7.0.0",
-        "inquirer-npm-name": "^3.0.0",
-        "lodash": "^4.17.15",
-        "mkdirp": "^0.5.1",
-        "shelljs": "^0.8.3",
-        "simple-git": "^1.126.0",
-        "yeoman-generator": "^4.0.2",
-        "yosay": "^2.0.2"
-    },
-    "devDependencies": {
-        "@ef-carbon/tspm": "^2.2.5",
-        "@types/chalk": "^2.2.0",
-        "@types/deep-extend": "^0.4.31",
-        "@types/inquirer": "^6.5.0",
-        "@types/inquirer-npm-name": "^3.0.1",
-        "@types/lodash": "^4.14.139",
-        "@types/mkdirp": "^0.5.2",
-        "@types/shelljs": "^0.8.5",
-        "@types/yeoman-generator": "^3.1.4",
-        "@types/yosay": "^0.0.29",
-        "@typescript-eslint/eslint-plugin": "^2.3.2",
-        "@typescript-eslint/parser": "^2.3.2",
-        "copyfiles": "^2.1.1",
-        "eslint": "^6.5.1",
-        "eslint-config-prettier": "^6.3.0",
-        "eslint-plugin-prettier": "^3.1.1",
-        "husky": "^3.0.7",
-        "prettier": "^1.18.2",
-        "rimraf": "^3.0.0",
-        "semantic-release": "^15.13.24",
-        "ts-loader": "^6.1.2",
-        "typescript": "^3.6.3"
+  "name": "generator-express-boilerplate",
+  "version": "0.0.0-development",
+  "description": "Express Js App Generator",
+  "main": "lib/generators/app/index.js",
+  "keywords": [
+    "express-generator",
+    "express"
+  ],
+  "scripts": {
+    "build": "yarn run clean && tsc",
+    "postbuild": "ef-tspm && yarn run copy-files",
+    "clean": "rimraf lib/",
+    "prepare": "yarn run build",
+    "copy-files": "copyfiles -u 1 src/**/*.js src/**/*.json src/**/*.tmp lib",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings=5",
+    "lint:fix": "yarn run lint --fix",
+    "semantic-release": "semantic-release"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint:fix"
     }
+  },
+  "files": [
+    "lib/"
+  ],
+  "author": "Mohit Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "deep-extend": "^0.6.0",
+    "generator-license": "^5.4.0",
+    "generator-node": "^2.7.0",
+    "inquirer": "^7.0.0",
+    "inquirer-npm-name": "^3.0.0",
+    "lodash": "^4.17.15",
+    "mkdirp": "^0.5.1",
+    "shelljs": "^0.8.3",
+    "simple-git": "^1.126.0",
+    "yeoman-generator": "^4.0.2",
+    "yosay": "^2.0.2"
+  },
+  "devDependencies": {
+    "@ef-carbon/tspm": "^2.2.5",
+    "@types/chalk": "^2.2.0",
+    "@types/deep-extend": "^0.4.31",
+    "@types/inquirer": "^6.5.0",
+    "@types/inquirer-npm-name": "^3.0.1",
+    "@types/lodash": "^4.14.139",
+    "@types/mkdirp": "^0.5.2",
+    "@types/shelljs": "^0.8.5",
+    "@types/yeoman-generator": "^3.1.4",
+    "@types/yosay": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "copyfiles": "^2.1.1",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.7",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "semantic-release": "^15.13.24",
+    "ts-loader": "^6.1.2",
+    "typescript": "^3.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mohit21GoJs/generator-express.git"
+  }
 }
