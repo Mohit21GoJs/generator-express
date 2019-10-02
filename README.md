@@ -35,7 +35,7 @@
 
 :label: Run `npm link` from root directory of project(This will link the generator to yeoman).
 
-:label: Switch to any other folder and run `yo generator-express-custom-boilerplate`
+:label: Switch to any other folder and run `yo express-boilerplate`
 
 
 ## Feature List
