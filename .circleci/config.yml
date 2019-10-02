@@ -1,0 +1,47 @@
+version: 2
+defaults: &defaults
+    working_directory: ~/express-generator
+    docker:
+        - image: circleci/node:lts
+jobs:
+    check_lint_and_test:
+        <<: *defaults
+        steps:
+            - checkout
+            - run:
+                  name: Install yarn
+                  command: sudo npm i -g yarn
+            - run:
+                  name: Install dependcies
+                  command: yarn install
+            - run:
+                  name: Check Linting
+                  command: yarn lint
+            - persist_to_workspace:
+                  root: .
+                  paths: .
+
+    publish_version:
+        <<: *defaults
+        steps:
+            - attach_workspace:
+                  at: ~/express-generator
+            - run:
+                  name: Authenticate with registry
+                  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+            - run:
+                  name: Publish package
+                  command: npm publish
+
+workflows:
+    version: 2
+    build_and_test:
+        jobs:
+            - check_lint_and_test
+            - publish_version:
+                  filters:
+                      branches:
+                          only:
+                              - release
+                  requires:
+                      - check_lint_and_test
