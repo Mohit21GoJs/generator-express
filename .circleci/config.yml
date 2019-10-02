@@ -34,11 +34,8 @@ jobs:
             - attach_workspace:
                   at: ~/express-generator
             - run:
-                  name: Authenticate with registry
-                  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-            - run:
-                  name: Publish package
-                  command: npm publish
+                  name: Release version
+                  command: yarn run release
 
 workflows:
     version: 2
@@ -49,6 +46,6 @@ workflows:
                   filters:
                       branches:
                           only:
-                              - release
+                              - next
                   requires:
                       - check_lint_and_test
