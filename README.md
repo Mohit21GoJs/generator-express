@@ -1,6 +1,8 @@
 # :tada: generator-express :zap: :hammer_and_pick:
 
-[![CircleCI](https://circleci.com/gh/Mohit21GoJs/generator-express.svg?style=svg)](https://circleci.com/gh/Mohit21GoJs/generator-express)  [![npm version](https://badge.fury.io/js/generator-express-boilerplate.svg)](https://badge.fury.io/js/generator-express-boilerplate)[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+[![CircleCI](https://circleci.com/gh/Mohit21GoJs/generator-express.svg?style=svg)](https://circleci.com/gh/Mohit21GoJs/generator-express)  [![npm version](https://badge.fury.io/js/generator-express-boilerplate.svg)](https://badge.fury.io/js/generator-express-boilerplate) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 ## For using the generator
 
 #### Pre-requisites
@@ -11,13 +13,13 @@
 
 #### Run generator
 
-:label: Install using `npm i -g generator-express-custom-boilerplate`
+:label: Install using `npm i -g generator-express-boilerplate`
 
-:label: Run `yo generator-express-custom-boilerplate` in the desired folder
+:label: Run `yo express-boilerplate` in the desired folder
 
 :label: Answer the questions in prompt or pass options from cli.
 
-:label: For help in checking available options use command `yo generator-express-custom-boilerplate --help`
+:label: For help in checking available options use command `yo express-boilerplate --help`
 
 ## Running the project locally
 
@@ -35,7 +37,7 @@
 
 :label: Run `npm link` from root directory of project(This will link the generator to yeoman).
 
-:label: Switch to any other folder and run `yo generator-express-custom-boilerplate`
+:label: Switch to any other folder and run `yo express-boilerplate`
 
 
 ## Feature List
