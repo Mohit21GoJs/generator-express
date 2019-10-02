@@ -35,7 +35,7 @@ jobs:
                   at: ~/express-generator
             - run:
                   name: Release version
-                  command: yarn run release
+                  command: yarn run semantic-release
 
 workflows:
     version: 2
