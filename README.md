@@ -1,5 +1,8 @@
 # :tada: generator-express :zap: :hammer_and_pick:
 
+CI Pipeline [![CircleCI](https://circleci.com/gh/Mohit21GoJs/generator-express.svg?style=svg)](https://circleci.com/gh/Mohit21GoJs/generator-express)
+
+npm package [![npm version](https://badge.fury.io/js/generator-express-custom-boilerplate.svg)](https://badge.fury.io/js/generator-express-custom-boilerplate)
 ## For using the generator
 
 #### Pre-requisites
