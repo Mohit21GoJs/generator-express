@@ -11,13 +11,13 @@
 
 #### Run generator
 
-:label: Install using `npm i -g generator-express-custom-boilerplate`
+:label: Install using `npm i -g generator-express-boilerplate`
 
-:label: Run `yo generator-express-custom-boilerplate` in the desired folder
+:label: Run `yo express-boilerplate` in the desired folder
 
 :label: Answer the questions in prompt or pass options from cli.
 
-:label: For help in checking available options use command `yo generator-express-custom-boilerplate --help`
+:label: For help in checking available options use command `yo express-boilerplate --help`
 
 ## Running the project locally
 
