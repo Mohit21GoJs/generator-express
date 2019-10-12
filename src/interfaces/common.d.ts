@@ -1,11 +1,10 @@
-import Generator from 'yeoman-generator';
-
-interface Author {
+export interface Author {
     email?: string;
     username?: string;
     name?: string;
 }
-interface PackageAnswers {
+
+export interface Package {
     version?: string;
     author?: Author;
     license?: string;
@@ -22,17 +21,4 @@ interface PackageAnswers {
     scripts?: {
         [key: string]: string;
     };
-}
-export class BaseGeneratorClass extends Generator {
-    constructor(args, opts) {
-        super(args, opts);
-    }
-
-    _readPkg(): PackageAnswers {
-        return this.fs.readJSON(this.destinationPath('package.json'), {});
-    }
-
-    _writePkg(pkg): void {
-        this.fs.writeJSON(this.destinationPath('package.json'), pkg);
-    }
 }

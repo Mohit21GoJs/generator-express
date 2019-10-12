@@ -1,4 +1,4 @@
-import { BaseGeneratorClass } from '@helpers/baseClass';
+import { BaseGeneratorClass } from '@app/helpers/BaseGeneratorClass';
 import { appendToObj } from '@app/helpers/util';
 
 enum KEY_MAPS {

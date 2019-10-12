@@ -1,22 +1,10 @@
-import { BaseGeneratorClass } from '@helpers/baseClass';
+import { BaseGeneratorClass } from '@app/helpers/BaseGeneratorClass';
 import get from 'lodash/get';
 import { appendToObj, mappedSequentialPromise } from '@app/helpers/util';
+import { Package } from '@app/interfaces/common';
 
-interface Author {
-    email?: string;
-    username?: string;
-    name?: string;
-}
-interface PackageAnswers {
-    version?: string;
-    author?: Author;
-    license?: string;
-    keywords?: Array<string>;
-    main?: string;
-    description?: string;
-}
 export = class extends BaseGeneratorClass {
-    answers: PackageAnswers = {};
+    answers: Package = {};
 
     constructor(args, options) {
         super(args, options);
@@ -92,7 +80,7 @@ export = class extends BaseGeneratorClass {
         });
     }
     async prompting(): Promise<void> {
-        const promptAnswers = await this.__askFor<PackageAnswers>();
+        const promptAnswers = await this.__askFor<Package>();
         const mappedAnswers = {
             name: this.options.name,
             version: get(promptAnswers, 'version'),
