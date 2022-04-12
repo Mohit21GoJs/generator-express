@@ -37,7 +37,7 @@
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
     "shelljs": "^0.8.3",
-    "simple-git": "^1.126.0",
+    "simple-git": "^3.5.0",
     "yeoman-generator": "^4.0.2",
     "yosay": "^2.0.2"
   },
